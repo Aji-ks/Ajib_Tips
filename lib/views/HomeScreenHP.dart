@@ -3,41 +3,41 @@ import 'package:flutter/material.dart';
 import 'package:contoh_navigasi_flutter/models/film.dart';
 import 'package:contoh_navigasi_flutter/views/Detailfilm.dart';
 
-import 'HomeScreenHP.dart';
+import 'HomeScreen.dart';
 
-class HomeScreen extends StatelessWidget {
-  final List<Tips> tipspc = [
+class HomeScreenHP extends StatelessWidget {
+  final List<Tips> tips = [
     Tips(
-        'Adobe After effect',
-        'Aplikasi yang di khususkan untuk membuat VFX',
+        'Kinemaster',
+        'Aplikasi yang di khususkan untuk membuat Video',
         'Standar industri untuk grafik gerak dan efek visual, Adobe After Effects digunakan oleh perancang gerak, perancang grafis, dan editor video untuk membuat visual canggih untuk film, TV, media sosial, web, dan banyak lagi.',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/512px-Adobe_After_Effects_CC_icon.svg.png?20210519030120'),
+        'https://upload.wikimedia.org/wikipedia/commons/2/29/Appicon_KineMaster.png'),
     Tips(
-        'Adobe Premiere',
-        'Aplikasi yang di gunakan untuk compositing video',
+        'Capcut',
+        'Aplikasi yang di khususkan untuk membuat Video Instan',
         'Adobe Premiere Pro adalah aplikasi pengeditan video tingkat lanjut yang memungkinkan Anda membuat film, siaran, dan konten sosial. Susun video dan tambahkan judul dengan berbagai alat kreatif dan AI.',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/2101px-Adobe_Premiere_Pro_CC_icon.svg.png'),
+        'https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/1af2f2fbb384f9105867c992dc6becf9.jpeg?x-expires=1670659200&x-signature=T8mULd%2ByDPU3YzVWVmzxpxH7Q5s%3D'),
     Tips(
-        'Adobe Media Encoder',
-        'Aplikasi yang dapat melakukan antrian render dalam satu tekan',
+        'VN',
+        'Aplikasi yang di khususkan untuk membuat Video Cepat',
         'Proses dan kelola media Anda dengan Adobe Media Encoder, aplikasi yang memungkinkan Anda menyerap, mentranskode, membuat proksi, dan mengeluarkan ke hampir semua format yang dapat Anda bayangkan.',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Adobe_Media_Encoder_Icon.svg/1200px-Adobe_Media_Encoder_Icon.svg.png'),
+        'https://play-lh.googleusercontent.com/0mvy747JRrqlziGtpvii5zKcMgL0AYRjXNRMlBkUbYadBabC1Dg466LsLKFION1vTg=w240-h480-rw'),
     Tips(
-        'Adobe Audition',
-        'Aplikasi yang di gunakan untuk editing audio atau suara',
+        'Node',
+        'Aplikasi yang di gunakan untuk editing VFX',
         'Abadikan, rancang, dan padukan suara dengan Adobe Audition, workstation audio digital terbaik di industri. Rekam, edit, dan bersihkan konten audio dengan mudah dengan tampilan multitrack, bentuk gelombang, dan frekuensi spektral.',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Adobe_Audition_CC_icon_%282020%29.svg/1200px-Adobe_Audition_CC_icon_%282020%29.svg.png'),
+        'https://image.winudf.com/v2/image1/Y29tLnNoYWxsd2F5c3R1ZGlvLm5vZGV2aWRlb19pY29uXzE2MjYyNzc3MDRfMDE0/icon.png?w=140&fakeurl=1'),
     Tips(
-        'Adobe Photoshop',
+        'Pixellab',
         'Aplikasi yang di khususkan untuk editing foto atau gambar',
         'Adobe Photoshop adalah aplikasi pengeditan gambar tingkat lanjut yang memungkinkan Anda mengubah foto, grafik, dan ilustrasi. Edit dan buat dengan lapisan, kuas, alat AI, dan lainnya.',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/1200px-Adobe_Photoshop_CC_icon.svg.png'),
+        'https://play-lh.googleusercontent.com/TqRTx4hbmOEeHz2PrH0lcWNNt83S5S22Qm06Epw5Ja-_0rPYgNYNQkAQRLaBKr2l4ew'),
     Tips(
-        'Adobe Illustrator',
+        'Picsart',
         'Aplikasi yang di gunakan untuk membuat desain',
         'Adobe Illustrator adalah aplikasi desain grafis canggih yang memungkinkan Anda membuat ilustrasi, logo, dan lainnya. Gunakan alat yang tepat untuk membuat karya seni vektor yang dapat diskalakan ke berbagai ukuran.',
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/1200px-Adobe_Illustrator_CC_icon.svg.png'),
-  ];
+        'https://cdnblog.picsart.com/2021/07/icon-square-780x780.jpg'),
+    ];
   @override
   Widget build(BuildContext context) {
     // return ZoomDrawer(
@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black12,
-        title: Text('Ajib Tips'),
+        title: Text('Ajib Tips HP'),
       ),
       backgroundColor: Colors.black87,
       drawer: Drawer(
@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
             ListTile(
                 leading: Icon(Icons.home),
                 title: const Text('HOME'),
-                onTap: () => print('Tap Trash menu')),
+                onTap: () => print('Sek2 gurung2 wkwk')),
 
             ListTile(
               leading: Icon(Icons.school),
@@ -124,7 +124,7 @@ class HomeScreen extends StatelessWidget {
     // );
     body: Container(
         child: ListView.builder(
-            itemCount: tipspc.length,
+            itemCount: tips.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => Detailfilm(
-                            film: tipspc[index],
+                            film: tips[index],
                           )));
                 },
                 child: Card(
@@ -142,7 +142,7 @@ class HomeScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Image.network(
-                          '${tipspc[index].gambar}',
+                          '${tips[index].gambar}',
                           width: 100,
                         ),
                       ),
@@ -154,11 +154,11 @@ class HomeScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8.0),
                               child: Text(
-                                '${tipspc[index].nama}',
+                                '${tips[index].nama}',
                                 style: Theme.of(context).textTheme.headline6,
                               ),
                             ),
-                            Text('${tipspc[index].sekilas}'),
+                            Text('${tips[index].sekilas}'),
                           ],
                         ),
                       ),

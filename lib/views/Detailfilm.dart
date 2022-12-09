@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:contoh_navigasi_flutter/models/film.dart';
 
   class Detailfilm extends StatelessWidget {
-  final Film film;
+  final Tips film;
 
   const Detailfilm({Key? key, required this.film}) : super(key: key);
 
@@ -23,7 +23,7 @@ import 'package:contoh_navigasi_flutter/models/film.dart';
                       style: TextStyle(color: Colors.grey[100])),
                   ),
                   Text(
-                    film.tanggal,
+                    film.sekilas,
                     style: TextStyle(color: Colors.grey[100]),
                   ),
                 ],
