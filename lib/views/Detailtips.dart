@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:contoh_navigasi_flutter/models/film.dart';
+import 'package:contoh_navigasi_flutter/models/tips.dart';
 
   class Detailfilm extends StatelessWidget {
   final Tips film;

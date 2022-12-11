@@ -1,9 +1,12 @@
 import 'package:contoh_navigasi_flutter/views/landing.dart';
 import 'package:flutter/material.dart';
-import 'package:contoh_navigasi_flutter/models/film.dart';
-import 'package:contoh_navigasi_flutter/views/Detailfilm.dart';
+import 'package:contoh_navigasi_flutter/models/tips.dart';
+import 'package:contoh_navigasi_flutter/views/Detailtips.dart';
 
+import '../models/tips_model.dart';
+import '../service/tips_service.dart';
 import 'HomeScreenHP.dart';
+import 'constant.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Tips> tipspc = [
@@ -40,19 +43,6 @@ class HomeScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    // return ZoomDrawer(
-    //   controller: ZoomDrawerController,
-    //   style: DrawerStyle.defaultStyle,
-    //   menuScreen: MyHomePage(),
-    //   mainScreen: MyHomePage(),
-    //   borderRadius: 24.0,
-    //   showShadow: true,
-    //   angle: -12.0,
-    //   drawerShadowsBackgroundColor: Colors.grey,
-    //   slideWidth: MediaQuery.of(context).size.width*.65,
-    //   openCurve: Curves.fastOutSlowIn,
-    //   closeCurve: Curves.bounceIn,
-    // );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black12,
@@ -107,91 +97,110 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-      ), 
-      //   backgroundColor: Colors.black87,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      
-      // bottomNavigationBar: AnimatedBottomNavigationBar(
-      //   icons: iconList,
-      //   activeIndex: _bottomNavIndex,
-      //   gapLocation: GapLocation.center,
-      //   notchSmoothness: NotchSmoothness.verySmoothEdge,
-      //   leftCornerRadius: 32,
-      //   rightCornerRadius: 32,
-      //   onTap: (index) => setState(() => _bottomNavIndex = index),
-      //   //other params
-      // ),
-    // );
-    body: Container(
-        child: ListView.builder(
-            itemCount: tipspc.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Detailfilm(
-                            film: tipspc[index],
-                          )));
-                },
-                child: Card(
-                  color: Colors.blueGrey,
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Image.network(
-                          '${tipspc[index].gambar}',
-                          width: 100,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: Text(
-                                '${tipspc[index].nama}',
-                                style: Theme.of(context).textTheme.headline6,
+      ),
+
+    body: FutureBuilder<List<dynamic>>(
+      future: RameneService.getDataRamenFake(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+              child: Text(
+                  'Silahkan menunggu')); // apabila snapshot.data maka muncul null karena sedang proses menampilkan data
+        } else {
+          if (snapshot.hasError) {
+            return Center(
+                child: Text(
+                  'Error: ${snapshot.error}'), // apabila snapshot.data maka muncul Error: null karena gagal mengambil data
+                    // 'Error')
+            );
+          } else {
+            print(snapshot.data!.length,);
+            // print(snapshot.data![0]['name']);
+            return Padding(
+              padding:
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(children: <Widget>[
+                const SizedBox(height: 10),
+                TextField(
+                  controller: null,
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.search),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(color: Colors.grey))),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: FutureBuilder<List<dynamic>>(
+                    future: RameneService.getDataRamenFake(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else {
+                        if (snapshot.hasError) {
+                          print(snapshot.data![0]);
+                          return Text(snapshot.error.toString());
+                        } else {
+                          print(snapshot.data![0]['name']);
+                          return GridView.builder(
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 5,
+                                mainAxisSpacing: 10,
+                                childAspectRatio: 0.75,
                               ),
-                            ),
-                            Text('${tipspc[index].sekilas}'),
-                          ],
-                        ),
-                      ),
-                    ],
+                              itemCount: snapshot.data!.length,
+                              padding: EdgeInsets.all(10),
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        // height: 170,
+                                        // width: 160,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(16),
+                                            image: DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: NetworkImage(
+                                                  "${snapshot.data![index]['img_url']}"),
+                                            )),
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      "${snapshot.data![index]['name']}",
+                                      style: TextStyle(
+                                        color: lightGrey,
+                                        fontFamily: 'Poppins Light',
+                                      ),
+                                    ),
+                                    SizedBox(height: 2),
+                                    Text(
+                                      "${snapshot.data![index]['sekilas']}",
+                                      style: TextStyle(
+                                        color: darkGrey,
+                                        fontFamily: 'Poppins Regular',
+                                      ),
+                                    ),
+                                  ],
+
+                                );
+                              });
+                        }
+                      }
+                    },
                   ),
                 ),
-              );
-            }),
-      )
+              ]),
+            );
+          }
+        }
+      },
+    ),
       );
-        // bottomNavigationBar: BottomNavigationBar(
-        //   items: const <BottomNavigationBarItem>[
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.home),
-        //       label: 'Home',
-        //       backgroundColor: Colors.black12,
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.business),
-        //       label: 'Business',
-        //       backgroundColor: Colors.green,
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.school),
-        //       label: 'School',
-        //       backgroundColor: Colors.purple,
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.settings),
-        //       label: 'Settings',
-        //       backgroundColor: Colors.pink,
-        //     ),
-        //   ],
-        // ),
   }
 }

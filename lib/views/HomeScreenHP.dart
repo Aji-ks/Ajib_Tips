@@ -1,7 +1,7 @@
 import 'package:contoh_navigasi_flutter/views/landing.dart';
 import 'package:flutter/material.dart';
-import 'package:contoh_navigasi_flutter/models/film.dart';
-import 'package:contoh_navigasi_flutter/views/Detailfilm.dart';
+import 'package:contoh_navigasi_flutter/models/tips.dart';
+import 'package:contoh_navigasi_flutter/views/Detailtips.dart';
 
 import 'HomeScreen.dart';
 
