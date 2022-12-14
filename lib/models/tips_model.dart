@@ -1,14 +1,14 @@
-class RamenModel {
+class TipsModel {
   final String name , sekilas, deskripsi, img_url;
-  RamenModel({
+  TipsModel({
     required this.name,
     required this.sekilas,
     required this.deskripsi,
     required this.img_url,
   });
 
-  factory RamenModel.fromJSON(Map parsedJson) {
-    return RamenModel(
+  factory TipsModel.fromJSON(Map parsedJson) {
+    return TipsModel(
       name: parsedJson['name'],
       sekilas: parsedJson['sekilas'],
       deskripsi: parsedJson['deskripsi'],

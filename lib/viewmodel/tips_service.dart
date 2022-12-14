@@ -3,8 +3,9 @@ import 'package:dio/dio.dart';
 
 import '../models/tips_model.dart';
 
-class TipsService{
-  var baseUrlApi = "http://localhost:3000/data";
+class TipsService {
+  var baseUrlApi = "http://localhost:3000";
+  // var baseUrlApi = "http://localhost:3000/data";
   //   Future<List<RamenModel>> fetchRamens() async {
 //     Response response = await Dio().get(
 //         "http://localhost:3000/data");
@@ -21,12 +22,17 @@ class TipsService{
 //   return dataResponse;
 //   }
 
-   Future<List<TipsModel>> getDataTips() async {
-     Response response = await Dio().get("$baseUrlApi/data");
-     List<TipsModel> Tips =
-     (response.data as List).map((v) => TipsModel.fromJSON(v)).toList();
-     return Tips;
+  Future<List<TipsModel>> getDataTipsHp() async {
+    Response response = await Dio().get("$baseUrlApi/dataHP");
+    List<TipsModel> Tips =
+        (response.data as List).map((v) => TipsModel.fromJSON(v)).toList();
+    return Tips;
   }
 
+  Future<List<TipsModel>> getDataTips() async {
+    Response response = await Dio().get("$baseUrlApi/data");
+    List<TipsModel> Tips =
+        (response.data as List).map((v) => TipsModel.fromJSON(v)).toList();
+    return Tips;
+  }
 }
-

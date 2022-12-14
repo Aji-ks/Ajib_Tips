@@ -1,3 +1,5 @@
+import 'package:contoh_navigasi_flutter/views/HomeScreenHP.dart';
+
 import 'HomeScreen.dart';
 import 'landing.dart';
 import 'signup.dart';
