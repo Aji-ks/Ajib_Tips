@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                 onTap: () => print('Tap Trash menu')),
             ListTile(
               leading: Icon(Icons.school),
-              title: const Text('Software Sindows/Mac'),
+              title: const Text('Software Windows/Mac'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -93,13 +93,15 @@ class HomeScreen extends StatelessWidget {
               title: const Text('LOGOUT'),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => MyHomePage()));
               },
             ),
           ],
         ),
       ),
       body: FutureBuilder<List<TipsModel>>(
-        future: TipsService().getDataTips(),
+        future: TipsService.fetchTipsPC(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

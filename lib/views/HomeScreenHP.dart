@@ -80,7 +80,7 @@ class HomeScreenHP extends StatelessWidget {
                   onTap: () => print('Sek2 gurung2 wkwk')),
               ListTile(
                 leading: Icon(Icons.school),
-                title: const Text('Software Sindows/Mac'),
+                title: const Text('Software Windows/Mac'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -105,6 +105,8 @@ class HomeScreenHP extends StatelessWidget {
                 title: const Text('LOGOUT'),
                 onTap: () {
                   Navigator.of(context).pop();
+                  Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => MyHomePage()));
                 },
               ),
             ],
@@ -125,7 +127,7 @@ class HomeScreenHP extends StatelessWidget {
         // ),
         // );
         body: FutureBuilder<List<TipsModel>>(
-            future: TipsService().getDataTipsHp(),
+            future: TipsService.fetchTipsHP(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());

@@ -16,7 +16,7 @@ class Detailfilm extends StatelessWidget {
         ),
         backgroundColor: Colors.black87,
         body: FutureBuilder<List<TipsModel>>(
-            future: TipsService().getDataTips(),
+            future: TipsService.fetchTipsPC(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());

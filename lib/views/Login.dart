@@ -144,9 +144,9 @@ class _LoginState extends State<Login> {
             ElevatedButton(
               onPressed: () async {
                 var username = await Dio().get(
-                    'http://localhost:3000/user?username=${controllerUsername.text}');
+                    'http://192.168.31.204:3000/user?username=${controllerUsername.text}');
                 var password = await Dio().get(
-                    'http://localhost:3000/user?password=${controllerPassword.text}');
+                    'http://192.168.31.204:3000/user?password=${controllerPassword.text}');
                 if (username.data.length > 0) {
                   if (password.data.length > 0) {
                     Navigator.push(context,

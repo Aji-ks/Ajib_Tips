@@ -112,10 +112,10 @@ class _Signup extends State<Signup>{
             ElevatedButton(
               onPressed: () async {
                   var username = await Dio().get(
-                    'http://localhost:3000/user?username=${controllerUsername.text}'
+                    'http://192.168.31.204:3000/user?username=${controllerUsername.text}'
                   );
                   var password = await Dio().get(
-                    'http://localhost:3000/user?password=${controllerPassword.text}'
+                    'http://192.168.31.204:3000/user?password=${controllerPassword.text}'
                   );
 
                   if (username.data.length > 0){
@@ -126,7 +126,7 @@ class _Signup extends State<Signup>{
                     controllerUsername.clear();
                     controllerPassword.clear();
                   } else {
-                    var response = await Dio().post('http://localhost:3000/user',
+                    var response = await Dio().post('http://192.168.31.204:3000/user',
                     data : {
                       "username": controllerUsername.text,
                       "password": controllerPassword.text
@@ -143,7 +143,7 @@ class _Signup extends State<Signup>{
                     fontSize: 18,
                   )),
               style: ElevatedButton.styleFrom(
-                  primary: orangeAccent,
+                  primary: Colors.blue,
                   minimumSize: const Size.fromHeight(55),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -164,7 +164,7 @@ class _Signup extends State<Signup>{
                     style: TextStyle(
                       fontFamily: 'Poppins Light',
                       fontSize: 16,
-                      color: orangeAccent,
+                      color: Colors.blue,
                     )),
               ],
             ),
